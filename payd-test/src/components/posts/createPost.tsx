@@ -57,6 +57,7 @@ const CreatePost: React.FC<{ onPostCreated: (post: Post) => void }> = ({ onPostC
           name="body"
           value={newPost.body}
           onChange={handleInputChange}
+          borderColor= 'gray.300'
           resize="vertical"
         />
         <Input
