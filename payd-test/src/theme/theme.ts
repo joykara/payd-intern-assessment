@@ -1,7 +1,6 @@
 import { ThemeConfig, extendTheme } from '@chakra-ui/react';
 import '@fontsource/lato';
 import '@fontsource/merriweather';
-import { color } from 'framer-motion';
 
 // Color mode
 const config: ThemeConfig = {
@@ -11,12 +10,12 @@ const config: ThemeConfig = {
 
 // Define custom colors
 const colors = {
-  brand: {
-    darkGreen: '#22543D', // Dark Green
-    amber: '#E09132', // Amber
-    white: '#FFFFFF', // White
-    black: '#000000', //Black
-  },
+    brand: {
+        darkGreen: '#22543D', // Dark Green
+        amber: '#E09132', // Amber
+        white: '#FFFFFF', // White
+        black: '#000000', //Black
+    },
 };
 
 // Create the theme with custom colors and settings
@@ -25,10 +24,14 @@ const customTheme = extendTheme({
     config,
     styles: {
         global: (props: any) => ({
-        'html, body': {
-            bg: props.colorMode === 'dark' ? 'gray.800' : 'brand.white',
-            color: props.colorMode === 'dark' ? 'brand.white' : 'brand.darkGreen',
-        },
+            'html, body': {
+                bg: props.colorMode === 'dark' ? 'gray.800' : 'brand.white',
+                color: props.colorMode === 'dark' ? 'brand.white' : 'brand.darkGreen',
+            },
+            // p tag dark theme
+            p: {
+                color: 'brand.black',
+            },
         }),
     },
     fonts: {
@@ -37,11 +40,12 @@ const customTheme = extendTheme({
     },
     components: {
         Input: {
-            baseStyle: {
+            baseStyle: (props: any) => ({
                 focusBorderColor: 'brand.amber',
-                color: 'brand.black',
+                bg: 'brand.white',
+                color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black',
                 placeholder: 'gray.500',
-            },
+            }),
             // borders in darktheme
             variants: {
                 outline: {
@@ -50,6 +54,9 @@ const customTheme = extendTheme({
                         _hover: {
                             borderColor: 'brand.amber',
                         },
+                        _placeholder: {
+                            color: 'gray.500',
+                        }
                     },
                 },
             },
@@ -59,17 +66,17 @@ const customTheme = extendTheme({
                 padding: '1px',
             },
             variants: {
-                solid: {
-                    bg: 'brand.darkGreen',
+                solid: (props: any) => ({
+                    bg: props.colorMode === 'dark' ? 'brand.amber' : 'brand.darkGreen',
                     color: 'brand.white',
                     _hover: {
-                        bg: 'brand.amber',
+                        bg: props.colorMode === 'dark' ? 'brand.darkGreen' : 'brand.amber',
                     },
-                },
+                }),
             },
         },
         // Text darktheme color and hover color
-        p: {
+        Text: {
             baseStyle: (props: any) => ({
                 color: props.colorMode === 'dark' ? 'brand.black' : 'brand.black',
                 _hover: {
