@@ -1,6 +1,8 @@
 ## Description
-- **Summary**: This project creates the interface described for the test. 
-![Snapshot_2024-06-11_173441_localhost](https://github.com/atuyabirisi/intern-assessment/assets/99082005/2d38ec83-66e3-49bb-95c4-a12768360381)
+- **Summary**: This project creates the interface described for the test.
+- **Objective**: To create a simple React application that fetches and displays posts from an API endpoint, allows users to create new posts, and implements a search functionality to filter posts.
+![Snapshot_light](/payd-test/public/images/Screenshot_13-6-2024_104133_localhost.jpeg)
+![Snapshot_light](/payd-test/public/images/Screenshot_13-6-2024_10394_localhost.jpeg)
 
 ## Implementation
 - It creates the different components to their folders under `src/components/...` and imports them to the main `App.tsx` file.
@@ -14,12 +16,13 @@
   - Added a search input to the Posts section.
   - Modified Posts to filter posts based on the search query.
   - Refactored state management in Posts to support dynamic filtering.
+  - Implemented a custom dark/light theme for the project.
   - Implemented responsive styles for different devices.
 
 ## Additional Features
 - Implemented a custom theme for the project in `theme.ts`
 - Worked with a color scheme of `white`, `darkGreen`, and `amber`.
-- Added "Previous" and "Next" buttons to navigate between pages. 
+- Added "Previous" and "Next" buttons to navigate between pages.
 - Implemented a <Spinner /> for the loading state to the posts.
 - Displayed a "No posts found" message if filtered post isn't available.
 
@@ -27,6 +30,10 @@
 ![Screenshot_11-6-2024_172232_localhost](https://github.com/atuyabirisi/intern-assessment/assets/99082005/5bbbe84f-6d66-4ebc-9df4-074692f31fb8)
 ![Screenshot_11-6-2024_172346_localhost](https://github.com/atuyabirisi/intern-assessment/assets/99082005/4af29a75-a5fc-487f-ae28-690215cc8560)
 ![Screenshot 2024-06-11 at 18-34-56 React App](https://github.com/atuyabirisi/intern-assessment/assets/99082005/2bcd0e0b-761e-4f97-bd11-5ee4738c8dd0)
+
+## Implemented dark and light theme
+![Screenshot_13-6-2024_10394_localhost](https://github.com/getpayd-tech/intern-assessment/assets/99082005/8373b73c-66ca-4f1c-b001-5f147032d709)
+![Screenshot_13-6-2024_104133_localhost](https://github.com/getpayd-tech/intern-assessment/assets/99082005/07778339-6855-489e-b982-0ba392d84aa4)
 
 
 # Getting Started with Create React App
