@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { Box, Button, Input, Text, Textarea, VStack, useToast } from '@chakra-ui/react';
+import { Box, Button, Input, Text, Textarea, VStack, useColorMode, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 
 // Define the type for a Post
@@ -13,32 +13,33 @@ interface Post {
 const CreatePost: React.FC<{ onPostCreated: (post: Post) => void }> = ({ onPostCreated }) => {
   const toast = useToast();
   const [newPost, setNewPost] = useState({ title: '', body: '', userId: '' });
+  const { colorMode } = useColorMode();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-      const { name, value } = e.target;
-      setNewPost({ ...newPost, [name]: value });
+    const { name, value } = e.target;
+    setNewPost({ ...newPost, [name]: value });
   }
 
   const handleCreatePost = async () => {
-      try {
-          const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newPost);
-          onPostCreated(response.data); // Notify parent component
-          setNewPost({ title: '', body: '', userId: '' });
-          // Success toast
-          toast({
-            title: "Post created.",
-            description: "Your post has been created successfully.",
-            status: "success",
-            duration: 5000,
-            isClosable: true,
-          });
-      } catch (error) {
-          console.error('Error creating post:', error);
-      }
+    try {
+      const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newPost);
+      onPostCreated(response.data); // Notify parent component
+      setNewPost({ title: '', body: '', userId: '' });
+      // Success toast
+      toast({
+        title: "Post created.",
+        description: "Your post has been created successfully.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (error) {
+      console.error('Error creating post:', error);
+    }
   }
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" p={4} mt={10} minW="300px"  bg={"brand.white"}
+    <Box borderWidth="1px" borderRadius="lg" p={4} mt={10} minW="300px" bg={"brand.white"}
       w={{ base: '100%', lg: '400px' }} h={"100%"}
       position={{ base: 'static', sm: 'static', md: 'sticky', lg: 'sticky' }} top={10}
     >
@@ -50,6 +51,8 @@ const CreatePost: React.FC<{ onPostCreated: (post: Post) => void }> = ({ onPostC
           name="title"
           value={newPost.title}
           onChange={handleInputChange}
+          color={colorMode === 'dark' ? 'brand.darkGreen' : 'brand.black'}
+          _placeholder={{ color: 'gray.500' }}
         />
         <Textarea
           focusBorderColor="lime"
@@ -57,8 +60,10 @@ const CreatePost: React.FC<{ onPostCreated: (post: Post) => void }> = ({ onPostC
           name="body"
           value={newPost.body}
           onChange={handleInputChange}
-          borderColor= 'gray.300'
+          borderColor='gray.300'
           resize="vertical"
+          color={colorMode === 'dark' ? 'brand.darkGreen' : 'brand.black'}
+          _placeholder={{ color: 'gray.500' }}
         />
         <Input
           focusBorderColor="lime"
@@ -66,6 +71,8 @@ const CreatePost: React.FC<{ onPostCreated: (post: Post) => void }> = ({ onPostC
           name="userId"
           value={newPost.userId}
           onChange={handleInputChange}
+          color={colorMode === 'dark' ? 'brand.darkGreen' : 'brand.black'}
+          _placeholder={{ color: 'gray.500' }}
         />
         <Button fontWeight={"normal"} onClick={handleCreatePost}>Submit</Button>
       </VStack>
